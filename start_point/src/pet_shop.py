@@ -84,4 +84,11 @@ def customer_can_afford_pet(customer, pet):
         affordable = True
     return affordable
 
-# 19
+# 19 20 21  
+def sell_pet_to_customer(petshop, pet, customer):
+    if pet in petshop['pets'] and customer_can_afford_pet(customer, pet):
+        remove_customer_cash(customer, pet['price'])
+        add_or_remove_cash(petshop, pet['price'])
+        increase_pets_sold(petshop, 1)
+        customer['pets'].append(pet)
+        return True
